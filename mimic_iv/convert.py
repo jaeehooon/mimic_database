@@ -1,11 +1,12 @@
 import sys
+import json
 
 
 class ICDCodeConverter(object):
 
     def __init__(self, path='./data/mapping_table/'):
         self.path = path
-        self.icd9_to_icd10, self.icd10_to_icd9 = self.load_file()
+        self.icd9_to_icd10cm, self.icd10_to_icd9cm = self.load_file()
 
     def load_file(self):
         """
@@ -88,7 +89,7 @@ class ICDCodeConverter(object):
 
         return icd9_to_10, icd10_to_9
 
-    def convert(self, src, version='9'):
+    def convert_version(self, src, version='9'):
         """
         1. This methods is for converting ICD9CM to ICD10CM or
             ICD10CM to ICD9CM.
@@ -120,8 +121,8 @@ class ICDCodeConverter(object):
         """
         try:
             if version == '9':
-                return self.icd9_to_icd10[src][0]
+                return self.icd9_to_icd10cm[src][0]
             elif version == '10':
-                return self.icd10_to_icd9[src][0]
+                return self.icd10_to_icd9cm[src][0]
         except KeyError:
             return None
