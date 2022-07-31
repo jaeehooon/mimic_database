@@ -45,3 +45,7 @@ def hospital_encounter(patient_obj, hadm_id, is_for_blood_test=0, age=None,
     }
 
     return hospital_counter
+
+
+def icu_encounter(hadm_obj):
+    pass
